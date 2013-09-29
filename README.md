@@ -1,6 +1,11 @@
 # Allegro::Webapi
 
-TODO: Write a gem description
+Allegro api wrapper written in ruby. Basic functions supported.
+
+**Support**
+- Searching
+- Connecting with allegro client via soap (with Savon gem)
+- fetching profile data
 
 ## Installation
 
@@ -18,7 +23,8 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+
+
 
 ## Contributing
 
