@@ -1,7 +1,10 @@
+require 'savon'
 require "allegro/webapi/version"
 require 'allegro/webapi/auction'
 require 'allegro/webapi/client'
+require 'allegro/webapi/user'
 require 'yaml'
+
 
 
 env_file = 'config/local_env.yml'

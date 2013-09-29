@@ -1,7 +1,6 @@
 #encoding: UTF-8
 require 'spec_helper'
 
-
 describe Allegro::WebApi::Client do
 
   before do
@@ -35,19 +34,13 @@ describe Allegro::WebApi::Client do
 
   describe 'login' do
     before do
-      @client = Allegro::WebApi::Client.new do |config|
-        config.user_login = ENV['USER_LOGIN']
-        config.password = ENV['PASSWORD']
-        config.webapi_key = ENV['API_KEY']
-        config.country_code = ENV['COUNTRY_CODE']
-        config.local_version = ENV['LOCAL_VERSION']
-      end
+      @client = set_client
     end
 
 
     it 'logs in' do
       VCR.use_cassette('login') do
-        puts @client.login.body
+        @client.login.session_handle.wont_be_nil
       end
     end
   end
