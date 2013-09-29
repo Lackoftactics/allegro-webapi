@@ -1,4 +1,7 @@
 require "allegro/webapi/version"
+require 'allegro/webapi/auction'
+require 'allegro/webapi/client'
+
 
 module Allegro
   module Webapi
