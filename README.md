@@ -39,6 +39,17 @@ _User data_
 
 	user = Allegro::WebApi::User.new(client)
     user.do_get_my_data
+
+Calls on user: birth_date, phone, first_name, rating, company, city, address, email, id
+
+_Search_
+
+	search = Allegro::WebApi::Search.new(client)
+    
+    search.search_query(search_string, options)#reference allegro api
+
+
+ 
     
     
  
