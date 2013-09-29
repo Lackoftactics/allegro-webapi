@@ -1,10 +1,11 @@
 # Allegro::Webapi
 
-Allegro api wrapper written in ruby.
+Allegro api wrapper written in ruby. Basic functions supported.
 
-Supported:
-	-fetching user_data
-	-making searches
+**Support**
+- Searching
+- Connecting with allegro client via soap (with Savon gem)
+- fetching profile data
 
 ## Installation
 
@@ -22,9 +23,36 @@ Or install it yourself as:
 
 ## Usage
 
-Basic usage supported for now.
+_Connecting to client_
 
-#Login to api client
+	 client = Allegro::WebApi::Client.new do |config|
+      config.user_login = 'User'
+      config.password = 'secret'
+      config.webapi_key = '1234'
+      config.country_code = 1
+      config.local_version = 1234
+    end
+ 	
+    client.login
+    
+_User data_
+
+	user = Allegro::WebApi::User.new(client)
+    user.do_get_my_data
+
+Calls on user: birth_date, phone, first_name, rating, company, city, address, email, id
+
+_Search_
+
+	search = Allegro::WebApi::Search.new(client)
+    
+    search.search_query(search_string, options)#reference allegro api
+
+
+ 
+    
+    
+ 
 
 
 
