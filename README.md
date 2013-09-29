@@ -23,6 +23,25 @@ Or install it yourself as:
 
 ## Usage
 
+_Connecting to client_
+
+	 client = Allegro::WebApi::Client.new do |config|
+      config.user_login = 'User'
+      config.password = 'secret'
+      config.webapi_key = '1234'
+      config.country_code = 1
+      config.local_version = 1234
+    end
+ 	
+    client.login
+    
+_User data_
+
+	user = Allegro::WebApi::User.new(client)
+    user.do_get_my_data
+    
+    
+ 
 
 
 
