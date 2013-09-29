@@ -10,8 +10,10 @@ Gem::Specification.new do |spec|
   spec.email         = ["przemek@codequest.com"]
   spec.description   = %q{Api wrapper for allegro webapi written in ruby. Make it supereasy to interact with allegro api.}
   spec.summary       = %q{API WRAPPER for allegro web api}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/Lackoftactics/allegro-webapi"
   spec.license       = "MIT"
+
+  spec.rubyforge_project = 'allegro-webapi'
 
   spec.files         = `git ls-files`.split($/)
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }

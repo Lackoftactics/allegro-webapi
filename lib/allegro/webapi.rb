@@ -3,6 +3,7 @@ require "allegro/webapi/version"
 require 'allegro/webapi/auction'
 require 'allegro/webapi/client'
 require 'allegro/webapi/user'
+require 'allegro/webapi/search'
 require 'yaml'
 
 

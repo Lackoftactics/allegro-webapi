@@ -1,6 +1,10 @@
 # Allegro::Webapi
 
-TODO: Write a gem description
+Allegro api wrapper written in ruby.
+
+Supported:
+	-fetching user_data
+	-making searches
 
 ## Installation
 
@@ -18,7 +22,11 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Basic usage supported for now.
+
+#Login to api client
+
+
 
 ## Contributing
 
