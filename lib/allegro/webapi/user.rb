@@ -9,8 +9,9 @@ module Allegro
       end
 
       def do_get_my_data
-        @my_data = client.call(:do_get_my_data, message: {session_handle: client.session_handle}).
-            body[:do_get_my_data_response][:user_data]
+        params = { session_handle: client.session_handle }
+        @my_data = client.call(:do_get_my_data, message: params)
+                         .body[:do_get_my_data_response][:user_data]
       end
 
       def company
@@ -33,7 +34,6 @@ module Allegro
         my_data[:user_phone]
       end
 
-
       def birth_date
         my_data[:user_birth_date]
       end
@@ -53,7 +53,6 @@ module Allegro
       def last_name
         my_data[:user_last_name]
       end
-
-    end
-  end
-end
+    end # class User
+  end # module WebApi
+end # module Allegro
