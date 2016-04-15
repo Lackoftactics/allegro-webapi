@@ -31,6 +31,10 @@ module Allegro
         JournalGateway.new(self)
       end
 
+      def personal_data
+        @personal_data ||= UserGateway.call(self)
+      end
+
       private
 
       def session_expired?(error)
