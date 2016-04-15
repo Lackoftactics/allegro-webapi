@@ -17,9 +17,9 @@ module Allegro
       end
 
       def do_get_my_data
-        params = {session_handle: client.session_handle}
-        @my_data = client.call(:do_get_my_data, message: params)
-                         .body[:do_get_my_data_response]
+        message = { session_handle: client.session_handle }
+        @my_data = client.call(Call.new(:do_get_my_data, message: message))
+          .body[:do_get_my_data_response]
         self
       end
 
