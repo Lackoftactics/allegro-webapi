@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Allegro
   module WebApi
     class JournalGateway
@@ -14,16 +15,16 @@ module Allegro
                     args
                   end
         client.call(:do_get_site_journal, message: message)
-          .body[:do_get_site_journal_response][:site_journal_array][:item]
+              .body[:do_get_site_journal_response][:site_journal_array][:item]
       end
 
       def items_info_for(array)
         message = {
-           session_handle: client.session_handle,
-           items_id_array: { item: array },
+          session_handle: client.session_handle,
+          items_id_array: {item: array},
         }
         client.call(:do_get_items_info, message: message)
-          .body[:do_get_items_info_response][:array_item_list_info][:item]
+              .body[:do_get_items_info_response][:array_item_list_info][:item]
       end
 
       private

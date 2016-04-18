@@ -1,11 +1,12 @@
+# frozen_string_literal: true
 module Allegro
   module WebApi
     class UserGateway
       attr_reader :client
 
-      USER_METHODS = %w(first_name last_name company birth_date email phone
-                        address city)
-      USER_COMPANY_METHODS = %w(regon nip)
+      USER_METHODS = %w(id first_name last_name company birth_date email phone
+                        address city).freeze
+      USER_COMPANY_METHODS = %w(regon nip).freeze
 
       def initialize(client)
         @client = client
@@ -16,14 +17,14 @@ module Allegro
       end
 
       def do_get_my_data
-        params = { session_handle: client.session_handle }
+        params = {session_handle: client.session_handle}
         @my_data = client.call(:do_get_my_data, message: params)
                          .body[:do_get_my_data_response]
         self
       end
 
-      # it creates methods: first_name last_name company birth_date email phone
-      #                     address city
+      # it creates methods: id first_name last_name company birth_date email
+      #                     phone address city id
       USER_METHODS.each do |method_name|
         define_method(method_name) do
           @my_data[:user_data]["user_#{method_name}".to_sym]
@@ -36,6 +37,6 @@ module Allegro
           @my_data[:company_extra_data]["company_#{method_name}".to_sym]
         end
       end
-    end # class User
+    end # class UserGateway
   end # module WebApi
 end # module Allegro

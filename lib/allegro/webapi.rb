@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 require 'savon'
-require "allegro/webapi/version"
+require 'allegro/webapi/version'
 require 'allegro/webapi/auction'
 require 'allegro/webapi/client'
 require 'allegro/webapi/user_gateway'
