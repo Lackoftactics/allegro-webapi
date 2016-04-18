@@ -1,9 +1,10 @@
+# frozen_string_literal: true
 module Allegro
   module WebApi
     class Client
       extend Forwardable
-      END_POINT = 'https://webapi.allegro.pl/service.php?wsdl'.freeze
-      SESSION_ERRORS = ['ERR_SESSION_EXPIRED', 'ERR_NO_SESSION'].freeze
+      END_POINT = 'https://webapi.allegro.pl/service.php?wsdl'
+      SESSION_ERRORS = %w(ERR_SESSION_EXPIRED ERR_NO_SESSION).freeze
 
       attr_reader :client, :hash_password, :session_handle
 
