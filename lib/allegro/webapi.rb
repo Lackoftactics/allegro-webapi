@@ -3,9 +3,11 @@ require 'savon'
 require 'allegro/webapi/version'
 require 'allegro/webapi/auction'
 require 'allegro/webapi/client'
+require 'allegro/webapi/call'
 require 'allegro/webapi/user_gateway'
-require 'allegro/webapi/search'
 require 'allegro/webapi/journal_gateway'
+require 'allegro/webapi/payu_gateway'
+require 'allegro/webapi/search'
 require 'yaml'
 
 module Allegro

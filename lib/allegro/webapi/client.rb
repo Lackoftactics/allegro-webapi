@@ -1,10 +1,14 @@
 # frozen_string_literal: true
+require 'timeout'
+
 module Allegro
   module WebApi
     class Client
       extend Forwardable
       END_POINT = 'https://webapi.allegro.pl/service.php?wsdl'
       SESSION_ERRORS = %w(ERR_SESSION_EXPIRED ERR_NO_SESSION).freeze
+      TIMEOUT = ENV['TIMEOUT'] || 10
+      COUNTER = ENV['COUNTER'] || 3
 
       attr_reader :client, :hash_password, :session_handle
 
@@ -15,10 +19,14 @@ module Allegro
         @options = options
       end
 
-      def call(operation_name, locals = {})
-        raw_data = client.call(operation_name, locals)
+      def call(call_object)
+        Timeout.timeout(TIMEOUT) { call_object.raw_data_for(client) }
+      rescue Timeout::Error => error
+        call_object.increment_counter
+        login and retry if call_object.counter <= COUNTER
+        call_object.raise_error(error)
       rescue => error
-        raise Error.call(error, locals, raw_data) unless session_expired?(error)
+        call_object.raise_error(error) unless session_expired?(error)
         login and retry
       end
 
@@ -34,6 +42,10 @@ module Allegro
 
       def personal_data
         @personal_data ||= UserGateway.call(self)
+      end
+
+      def payu
+        @payu ||= PayuGateway.call(self)
       end
 
       private
@@ -86,20 +98,5 @@ module Allegro
         }
       end
     end # class Client
-
-    class Error < StandardError
-      attr_reader :raw_data, :request_params, :error
-
-      def initialize(opts)
-        @error = opts[:error]
-        @raw_data = opts[:raw_data]
-        @request_params = opts[:request_params]
-        super(opts)
-      end
-
-      def self.call(error, request_params, raw_data)
-        new(error: error, request_params: request_params, raw_data: raw_data)
-      end
-    end # class Error
   end # module WebApi
 end # module Allegro

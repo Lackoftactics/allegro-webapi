@@ -14,8 +14,8 @@ module Allegro
                   else
                     args
                   end
-        client.call(:do_get_site_journal, message: message)
-              .body[:do_get_site_journal_response][:site_journal_array][:item]
+        client.call(Call.new(:do_get_site_journal, message: message))
+          .body[:do_get_site_journal_response][:site_journal_array][:item]
       end
 
       def items_info_for(array)
@@ -23,8 +23,8 @@ module Allegro
           session_handle: client.session_handle,
           items_id_array: {item: array},
         }
-        client.call(:do_get_items_info, message: message)
-              .body[:do_get_items_info_response][:array_item_list_info][:item]
+        client.call(Call.new(:do_get_items_info, message: message))
+          .body[:do_get_items_info_response][:array_item_list_info][:item]
       end
 
       private
