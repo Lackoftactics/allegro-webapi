@@ -64,7 +64,7 @@ module Allegro
       end
 
       def session_handler(response)
-        @session_handle ||=
+        @session_handle =
           response.body[:do_login_enc_response][:session_handle_part]
       end
 
