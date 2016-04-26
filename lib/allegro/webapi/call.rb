@@ -22,12 +22,15 @@ module Allegro
     end # class Call
 
     class Error < StandardError
-      attr_reader :raw_data, :request_params, :error
+      ERROR_CODES = {'ERR_NEW_PAYMENTS_NOT_CONFIGURED' => '405'}
+
+      attr_reader :raw_data, :request_params, :error, :code
 
       def initialize(opts)
         @error = opts[:error]
         @raw_data = opts[:raw_data]
         @request_params = opts[:request_params]
+        @code = ERROR_CODES[error.to_hash.dig(:fault, :faultcode)] || '500'
         super(opts)
       end
 

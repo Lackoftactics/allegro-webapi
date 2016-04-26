@@ -5,7 +5,7 @@ module Allegro
       attr_reader :client
 
       USER_METHODS = %w(id first_name last_name company birth_date email phone
-                        address city).freeze
+                        address city post_code).freeze
       USER_COMPANY_METHODS = %w(regon nip).freeze
 
       def initialize(client)
